@@ -113,3 +113,84 @@ a {
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
     0 4px 24px rgba(0, 0, 0, 0.04);
 }
+
+/* ─── SECTION COMMON ─── */
+.section-pad {
+  padding: 6rem 1.5rem;
+  background: var(--color-bg-light);
+}
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 4rem 1rem;
+  }
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Pill button with trailing arrow circle */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: -0.01em;
+}
+
+.btn-pill.dark {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.btn-pill.dark:hover {
+  background: #222;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.btn-pill.gold {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
+.btn-pill.gold:hover {
+  background: #c5a02e;
+}
+
+.btn-pill .arrow-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.btn-pill.dark .arrow-circle {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.btn-pill.gold .arrow-circle {
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--color-black);
+}
+

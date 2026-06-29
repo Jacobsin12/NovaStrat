@@ -121,8 +121,12 @@ export default function Login() {
                   fontSize: '0.85rem',
                   color: 'var(--color-text-muted)'
                 }}>
-                  <p style={{ margin: '0 0 0.5rem 0' }}>Para crear una cuenta, solicita un diagnóstico inicial en nuestra página web oficial.</p>
-                  <a href="http://localhost:5173" style={{ color: 'var(--color-accent-teal)', fontWeight: 600 }}>Ir a NovaStrat.com</a>
+                  <p style={{ margin: '0 0 0.5rem 0', lineHeight: '1.4' }}>
+                    Para registrarte, solicita nuestro <strong>Diagnóstico Express</strong>. Al completarlo, nuestro equipo evaluará tu caso y te enviará tus credenciales de acceso por correo y WhatsApp.
+                  </p>
+                  <a href="http://localhost:5173/?open-diagnostic=true" style={{ color: '#1e365d', fontWeight: 700, textDecoration: 'underline' }}>
+                    Comenzar Diagnóstico de Registro
+                  </a>
                 </div>
               </div>
             </form>

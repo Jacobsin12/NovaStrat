@@ -1,8 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowRight, CheckCircle, Activity } from 'lucide-react';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-import './DiagnosticoExpress.css';
+import '../styles/DiagnosticoExpress.css';
+
+// Componente selector de país personalizado con buscador interactivo
+const SearchableCountrySelect = ({ value, onChange, options, iconComponent: IconComponent }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const filteredOptions = options.filter(o => {
+    if (!o.value) return false;
+    return o.label.toLowerCase().includes(search.toLowerCase()) || 
+           o.value.toLowerCase().includes(search.toLowerCase());
+  });
+
+  return (
+    <div className="custom-country-select-container" ref={dropdownRef}>
+      <button 
+        type="button" 
+        className="custom-country-trigger" 
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Seleccionar país"
+      >
+        <IconComponent country={value} />
+        <span className="custom-country-arrow">▼</span>
+      </button>
+
+      {isOpen && (
+        <div className="custom-country-dropdown">
+          <div className="custom-country-search-box">
+            <input
+              type="text"
+              placeholder="Buscar país..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              onClick={e => e.stopPropagation()}
+              autoFocus
+            />
+          </div>
+          <div className="custom-country-options-list">
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map(o => (
+                <button
+                  key={o.value}
+                  type="button"
+                  className={`custom-country-option-item ${o.value === value ? 'active' : ''}`}
+                  onClick={() => {
+                    onChange(o.value);
+                    setIsOpen(false);
+                    setSearch('');
+                  }}
+                >
+                  <IconComponent country={o.value} />
+                  <span>{o.label}</span>
+                </button>
+              ))
+            ) : (
+              <div className="no-countries-found">No se encontraron países</div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const QUESTIONS = [
   {
@@ -59,6 +132,7 @@ export default function DiagnosticoExpress({ isOpen, onClose }) {
   const [leadData, setLeadData] = useState({ name: '', email: '', phone: '', company: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [scoreResult, setScoreResult] = useState(null);
+  const [showSuccessNotice, setShowSuccessNotice] = useState(false);
 
   if (!isOpen) return null;
 
@@ -118,6 +192,7 @@ export default function DiagnosticoExpress({ isOpen, onClose }) {
     setAnswers({});
     setIsFinished(false);
     setScoreResult(null);
+    setShowSuccessNotice(false);
     setLeadData({ name: '', email: '', phone: '', company: '', countryCode: '+52' });
     onClose();
   };
@@ -143,6 +218,37 @@ export default function DiagnosticoExpress({ isOpen, onClose }) {
         resultColor = '#E63946'; // Red
       }
 
+      if (showSuccessNotice) {
+        return (
+          <div className="diag-result-view fade-in">
+            <CheckCircle size={56} color="#25D366" style={{ marginBottom: '1.5rem', animation: 'pulse 2s infinite' }} />
+            <h3 style={{ fontSize: '1.6rem', marginBottom: '1rem', color: 'var(--color-black)' }}>¡Solicitud Recibida!</h3>
+            
+            <div className="registration-notice" style={{
+              background: 'rgba(30, 54, 93, 0.05)',
+              border: '1px dashed rgba(30, 54, 93, 0.2)',
+              borderRadius: '1rem',
+              padding: '1.25rem',
+              marginBottom: '2rem',
+              fontSize: '0.9rem',
+              color: '#1e365d',
+              lineHeight: '1.5',
+              textAlign: 'left',
+              fontFamily: 'var(--font-body)'
+            }}>
+              <strong>Proceso de Registro Iniciado:</strong> Nuestro equipo ha recibido tu diagnóstico y tus datos de contacto. Evaluaremos tu perfil para crear tu cuenta de acceso. Nos pondremos en contacto contigo por <strong>WhatsApp</strong> o <strong>correo electrónico</strong> en un plazo máximo de 24 horas hábiles para proporcionarte tus credenciales de acceso al Panel de Nova.
+            </div>
+
+            <div className="result-actions">
+              <button className="btn-pill dark" onClick={resetForm} style={{ padding: '0.8rem 2.5rem' }}>
+                Finalizar
+                <span className="arrow-circle"><CheckCircle size={18} /></span>
+              </button>
+            </div>
+          </div>
+        );
+      }
+
       return (
         <div className="diag-result-view fade-in">
           <Activity size={56} color={resultColor} style={{ marginBottom: '1.5rem', animation: 'pulse 2s infinite' }} />
@@ -151,14 +257,15 @@ export default function DiagnosticoExpress({ isOpen, onClose }) {
             {scoreResult} <span>/ 50</span>
           </div>
           <p className="result-description">{resultText}</p>
+          
           <div className="result-actions">
-            <button className="btn-pill dark" onClick={resetForm} style={{ padding: '0.8rem 2.5rem' }}>
-              Finalizar
-              <span className="arrow-circle"><CheckCircle size={18} /></span>
+            <button className="btn-pill dark" onClick={() => setShowSuccessNotice(true)} style={{ padding: '0.8rem 2.5rem' }}>
+              Enviar Solicitud
+              <span className="arrow-circle"><ArrowRight size={18} /></span>
             </button>
-            <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" className="btn-outline-hero" style={{ borderColor: 'rgba(0,0,0,0.15)', color: '#000', textDecoration: 'none' }}>
-              Solicitar Consultoría de Alto Impacto
-            </a>
+            <button className="btn-outline-hero" onClick={resetForm} style={{ borderColor: 'rgba(0,0,0,0.15)', color: '#000' }}>
+              Cancelar
+            </button>
           </div>
         </div>
       );
@@ -195,6 +302,7 @@ export default function DiagnosticoExpress({ isOpen, onClose }) {
               <div className="form-group-diag phone-input-container">
                 <PhoneInput
                   defaultCountry="MX"
+                  countrySelectComponent={SearchableCountrySelect}
                   placeholder="WhatsApp / Teléfono"
                   value={leadData.phone}
                   onChange={val => setLeadData({...leadData, phone: val})}

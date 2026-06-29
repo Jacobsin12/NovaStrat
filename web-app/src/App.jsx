@@ -9,6 +9,7 @@ import Leads from './pages/Leads';
 import Team from './pages/Team';
 import Vault from './pages/Vault';
 import Settings from './pages/Settings';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/vault" element={<Vault />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       </Router>
     </ThemeProvider>

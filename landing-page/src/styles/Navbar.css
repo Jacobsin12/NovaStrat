@@ -1,0 +1,132 @@
+/* ─── NAVBAR (sticky, liquid glass) ─── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 1rem 1.5rem;
+  background: rgba(245, 245, 245, 0.6);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: background 0.3s ease;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-center a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.2s ease;
+}
+
+.nav-center a:hover,
+.nav-center a.active-link {
+  color: var(--color-black);
+}
+
+.nav-center a.active-link {
+  font-weight: 700;
+}
+
+.nav-right .btn-nav {
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.6rem 1.75rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-right .btn-nav:hover {
+  background: #222;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.mobile-menu-btn {
+  display: none;
+  cursor: pointer;
+  z-index: 200;
+  position: relative;
+}
+
+/* Mobile nav overlay (Dropdown style) */
+.mobile-nav-overlay {
+  position: fixed;
+  top: 76px; /* Just below the navbar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40; /* Below the navbar (50) */
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 4rem;
+  gap: 2.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav-overlay.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-overlay a {
+  color: var(--color-black);
+  transition: color 0.2s ease;
+  letter-spacing: -0.02em;
+}
+
+.mobile-nav-overlay a.active-link {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.mobile-nav-overlay a:hover {
+  color: var(--color-gold);
+}
+
+@media (max-width: 768px) {
+  .nav-center, .nav-right {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+}
+

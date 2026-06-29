@@ -1,0 +1,233 @@
+/* ─── HERO SECTION ─── */
+.hero-section {
+  padding: 5.5rem 1.5rem 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-card {
+  position: relative;
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  height: calc(100vh - 96px);
+  background: linear-gradient(160deg, #e8ecf1 0%, #c9d5e3 30%, #a8bdd4 60%, #8aa7c4 100%);
+}
+
+/* Floating orbs inside hero */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+.hero-orb-1 {
+  width: 320px;
+  height: 320px;
+  top: 10%;
+  right: 8%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.05) 50%, transparent 70%);
+  animation: floatOrb 12s ease-in-out infinite;
+}
+
+.hero-orb-2 {
+  width: 220px;
+  height: 220px;
+  top: 35%;
+  right: 25%;
+  background: radial-gradient(circle, rgba(30, 54, 93, 0.2) 0%, rgba(30, 54, 93, 0.05) 50%, transparent 70%);
+  animation: floatOrb2 15s ease-in-out infinite;
+}
+
+.hero-orb-3 {
+  width: 160px;
+  height: 160px;
+  bottom: 20%;
+  right: 15%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  animation: floatOrb3 10s ease-in-out infinite;
+}
+
+.hero-orb-4 {
+  width: 400px;
+  height: 400px;
+  top: 5%;
+  right: 3%;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: transparent;
+  animation: floatOrb 18s ease-in-out infinite reverse;
+}
+
+.hero-orb-5 {
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  right: 30%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 60%);
+  animation: floatOrb2 8s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* Glass coin shapes */
+.hero-coin {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  border: 1.5px solid rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.08);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: rgba(212, 175, 55, 0.4);
+  font-family: var(--font-main);
+}
+
+.hero-coin-1 {
+  width: 90px;
+  height: 90px;
+  top: 18%;
+  right: 12%;
+  font-size: 1.8rem;
+  animation: floatOrb 9s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.hero-coin-2 {
+  width: 60px;
+  height: 60px;
+  top: 55%;
+  right: 22%;
+  font-size: 1.2rem;
+  animation: floatOrb2 11s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.hero-coin-3 {
+  width: 45px;
+  height: 45px;
+  top: 30%;
+  right: 35%;
+  font-size: 0.9rem;
+  animation: floatOrb3 7s ease-in-out infinite;
+}
+
+.hero-card-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 6rem 3rem 3rem;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--color-black);
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.125rem);
+  color: rgba(0, 0, 0, 0.5);
+  max-width: 440px;
+  margin-bottom: 2rem;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-outline-hero {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.btn-outline-hero:hover {
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--color-black);
+}
+
+/* Brand marquee inside hero */
+.hero-marquee {
+  margin-top: auto;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+}
+
+.hero-marquee-item {
+  flex-shrink: 0;
+  margin: 0 2rem;
+  color: rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 5rem 0.75rem 0.75rem;
+    min-height: 100vh;
+  }
+
+  .hero-card {
+    height: calc(100vh - 72px);
+  }
+
+  .hero-card-content {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn-pill,
+  .hero-actions .btn-outline-hero {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-orb-1, .hero-orb-4 { display: none; }
+  .hero-coin-1 { top: auto; bottom: 30%; right: 5%; }
+  .hero-coin-2 { top: auto; bottom: 20%; right: 15%; }
+  .hero-coin-3 { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  .brand-logo {
+    height: 40px !important;
+  }
+}
+

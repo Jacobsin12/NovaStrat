@@ -1,72 +1,70 @@
 .login-page {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent; 
+  flex-direction: column;
+  background-color: #f1f5f9; 
   position: relative;
-  overflow: hidden;
-}
-
-/* Base styles for Image and Container */
-.login-image-section {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 55%; 
-  z-index: 1;
-}
-
-.office-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  overflow-y: auto; /* Allow scrolling on small screens */
 }
 
 .login-container-mobile {
   width: 100%;
-  height: 100vh;
-  position: relative;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Mobile: Card Section bottom overlay */
-.login-card-section {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+/* On mobile, stack naturally using Flexbox */
+.login-image-section {
+  position: relative;
   width: 100%;
-  height: 55%;
+  height: 35vh; 
+  min-height: 200px;
+  z-index: 1;
+}
+
+/* Mobile: Card Section stacks below the header */
+.login-card-section {
+  position: relative;
+  width: 100%;
+  flex: 1;
   z-index: 2;
   display: flex;
-  align-items: flex-end;
+  align-items: stretch;
+  margin-top: -30px; /* Overlaps header for a layered glass effect */
 }
 
 /* Base Card Style (Mobile) */
 .login-card {
   width: 100%;
-  height: 100%;
-  background: var(--color-bg-panel) !important; 
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border-radius: 40px 40px 0 0 !important;
-  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.75) !important; 
+  backdrop-filter: blur(30px) saturate(185%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(185%) !important;
+  border-radius: 30px 30px 0 0 !important;
+  padding: 3.5rem 2rem 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 0 -15px 40px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 -10px 40px rgba(15, 23, 42, 0.05) !important;
   border: none !important;
-  border-top: 1px solid var(--color-border) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.8) !important;
 }
 
 /* -------------------------------------
    DESKTOP RESPONSIVE LAYOUT (50/50 SPLIT)
--------------------------------------- */
+   -------------------------------------- */
 @media (min-width: 1024px) {
+  .login-page {
+    overflow: hidden; /* Lock scroll on desktop */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
   .login-container-mobile {
     flex-direction: row;
+    height: 100vh;
+    min-height: 100vh;
   }
 
   /* Left Half: Image */
@@ -74,8 +72,7 @@
     position: relative;
     width: 50%;
     height: 100vh;
-    top: auto;
-    left: auto;
+    min-height: auto;
   }
 
   /* Right Half: Form Container */
@@ -83,8 +80,7 @@
     position: relative;
     width: 50%;
     height: 100vh;
-    bottom: auto;
-    left: auto;
+    margin-top: 0; /* Reset mobile overlap */
     align-items: center;
     justify-content: center;
   }
@@ -95,25 +91,25 @@
     height: 100%;
     width: 100%;
     padding: 0 15%; /* Spacing inside the form half */
-    background: var(--color-bg-panel) !important; /* Very translucent glass */
-    backdrop-filter: blur(40px) saturate(150%) !important;
+    background: rgba(255, 255, 255, 0.7) !important; 
+    backdrop-filter: blur(40px) saturate(160%) !important;
     border: none !important;
-    border-left: 1px solid var(--color-border) !important; /* Divider line */
-    box-shadow: -10px 0 30px rgba(0,0,0,0.2) !important;
+    border-left: 1px solid rgba(0, 0, 0, 0.06) !important; /* Divider line */
+    box-shadow: -15px 0 45px rgba(15, 23, 42, 0.04) !important;
     justify-content: center;
   }
 }
 
 /* -------------------------------------
    FORM ELEMENTS (Shared)
--------------------------------------- */
+   -------------------------------------- */
 .login-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-family: var(--font-body);
-  color: var(--color-text-main);
+  color: #0f172a;
   font-weight: 700;
   margin-bottom: 2rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .login-form-element {
@@ -130,24 +126,24 @@
   width: 100%;
   padding: 1.1rem 1.2rem;
   border-radius: 16px;
-  background-color: var(--color-bg-card-inner);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-main);
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #0f172a;
   font-family: var(--font-body);
   font-size: 1rem;
   transition: all 0.2s ease;
   outline: none;
-  box-shadow: var(--inner-shadow);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .login-input::placeholder {
-  color: var(--color-text-muted);
+  color: #94a3b8;
 }
 
 .login-input:focus {
-  border-color: var(--color-accent-teal);
-  background-color: var(--color-bg-card-inner);
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15), var(--inner-shadow);
+  border-color: #1e365d;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(30, 54, 93, 0.08), inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .input-icon-right {
@@ -155,7 +151,7 @@
   right: 1.2rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #9ca3af;
+  color: #94a3b8;
 }
 
 .cursor-pointer {
@@ -164,7 +160,7 @@
 }
 
 .cursor-pointer:hover {
-  color: #6b7280;
+  color: #1e365d;
 }
 
 .login-forgot {
@@ -176,12 +172,12 @@
 .login-forgot a {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: var(--color-text-muted);
+  color: #64748b;
   transition: color 0.2s;
 }
 
 .login-forgot a:hover {
-  color: var(--color-accent-teal);
+  color: #1e365d;
 }
 
 .login-action {
@@ -194,22 +190,22 @@
   width: 100%;
   max-width: 250px;
   padding: 1rem;
-  background-color: var(--color-gold-btn);
+  background-color: #1e365d;
   color: #ffffff;
   border: none;
   border-radius: 16px;
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(234, 179, 8, 0.25);
+  box-shadow: 0 8px 25px rgba(30, 54, 93, 0.15);
 }
 
 .btn-login-submit:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(234, 179, 8, 0.35);
-  background-color: #facc15;
+  box-shadow: 0 12px 30px rgba(30, 54, 93, 0.25);
+  background-color: #2b4c7e;
 }
 
 .btn-login-submit:active:not(:disabled) {
@@ -221,12 +217,12 @@
   margin-top: 1.5rem;
   font-family: var(--font-body);
   font-size: 0.9rem;
-  color: var(--color-text-muted);
+  color: #64748b;
 }
 
 .login-footer a {
-  color: var(--color-accent-teal);
-  font-weight: 500;
+  color: #1e365d;
+  font-weight: 600;
 }
 
 .login-footer a:hover {
@@ -235,9 +231,9 @@
 
 /* -------------------------------------
    ANIMATED FINANCIAL BACKGROUND
--------------------------------------- */
+   -------------------------------------- */
 .animated-bg {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -253,25 +249,25 @@
 
 .bg-text-overlay h2 {
   font-family: var(--font-main);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #1e365d;
+  font-size: clamp(1.8rem, 5vw, 3rem);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.03em;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  letter-spacing: -0.04em;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.6);
 }
 
 .finance-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
+  filter: blur(50px);
   z-index: 1;
 }
 
 .orb-1 {
   width: 300px;
   height: 300px;
-  background: rgba(212, 175, 55, 0.15); /* Gold */
+  background: rgba(212, 175, 55, 0.22); /* Soft Gold */
   top: 10%;
   left: -10%;
   animation: floatOrbSlow 15s infinite alternate ease-in-out;
@@ -280,7 +276,7 @@
 .orb-2 {
   width: 400px;
   height: 400px;
-  background: rgba(59, 130, 246, 0.1); /* Blue */
+  background: rgba(30, 54, 93, 0.12); /* Soft Corporate Blue */
   bottom: -10%;
   right: -10%;
   animation: floatOrbSlow 20s infinite alternate-reverse ease-in-out;
@@ -291,19 +287,21 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(212, 175, 55, 0.6);
+  color: rgba(212, 175, 55, 0.85);
   font-family: var(--font-main);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.5rem;
   z-index: 2;
   top: -100px; /* Start above screen */
   animation: fallCoin linear infinite;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
 }
 
 .coin-1 { left: 15%; animation-duration: 12s; animation-delay: 0s; font-size: 1.8rem; width: 70px; height: 70px; }

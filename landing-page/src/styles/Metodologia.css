@@ -1,0 +1,114 @@
+/* ─── METHODOLOGY (dark section) ─── */
+.methodology-section {
+  padding: 6rem 1.5rem;
+  background: var(--color-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.methodology-section::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.methodology-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+  align-items: end;
+  max-width: var(--max-w);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.methodology-header h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--color-white);
+  letter-spacing: -0.04em;
+}
+
+.methodology-header p {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.methodology-header .eyebrow {
+  color: var(--color-gold);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2.5rem 1.75rem;
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+.step-number {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.step-card h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.step-card p {
+  font-family: var(--font-body);
+  color: #ababab;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 1024px) {
+  .methodology-header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .methodology-section {
+    padding: 4rem 1rem;
+  }
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

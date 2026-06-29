@@ -1,0 +1,117 @@
+/* ─── ABOUT (2-column fintech layout) ─── */
+.about-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+  align-items: start;
+}
+
+.about-row h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--color-black);
+  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.about-paragraph {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 1.55;
+}
+
+/* Value cards — liquid glass + dark */
+.values-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.value-card {
+  border-radius: 1.5rem;
+  padding: 2rem;
+  min-height: 14rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+}
+
+.value-card.glass {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+.value-card.glass:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+.value-card.dark {
+  background: var(--color-card-dark);
+  color: var(--color-white);
+}
+
+.value-card.dark:hover {
+  box-shadow: 0 16px 48px rgba(26, 39, 68, 0.3);
+}
+
+.value-card .card-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.value-card.dark .card-title {
+  color: var(--color-white);
+}
+
+.value-card .card-body {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.value-card.glass .card-body {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.value-card.dark .card-body {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 1024px) {
+  .about-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .values-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .values-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .values-cards .value-card:first-child {
+    grid-column: span 1;
+  }
+}
+
