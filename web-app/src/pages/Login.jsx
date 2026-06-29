@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import '../styles/Login.css';
 
 export default function Login() {
+  const landingUrl = import.meta.env.VITE_LANDING_PAGE_URL || 'http://localhost:5173';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -124,7 +125,7 @@ export default function Login() {
                   <p style={{ margin: '0 0 0.5rem 0', lineHeight: '1.4' }}>
                     Para registrarte, solicita nuestro <strong>Diagnóstico Express</strong>. Al completarlo, nuestro equipo evaluará tu caso y te enviará tus credenciales de acceso por correo y WhatsApp.
                   </p>
-                  <a href="http://localhost:5173/?open-diagnostic=true" style={{ color: '#1e365d', fontWeight: 700, textDecoration: 'underline' }}>
+                  <a href={`${landingUrl}/?open-diagnostic=true`} style={{ color: '#1e365d', fontWeight: 700, textDecoration: 'underline' }}>
                     Comenzar Diagnóstico de Registro
                   </a>
                 </div>
